@@ -1,41 +1,5 @@
 "use strict";
 
-chrome.runtime.onInstalled.addListener(function () {
-    console.log("todo extension is running!");
-
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log("dom loded");
-        var createButton = document.getElementById("createListItem");
-        console.log(createButton);
-        createButton.addEventListener('click', function () {
-            alert("clicked!");
-        });
-    });
-
-    try {
-        if (typeof (Storage) == 'undefined') {
-            alert("Your browser doesn't support localStorage. This extension can't work without localStorage.");
-            return false;
-        }
-
-        if (localStorage != null) {
-            localStorage.clear();
-            console.log("storage is ok");
-
-            if (!localStorage.getItem("todoDB")) {
-                console.log("create new localStorage db");
-                createStorage();
-            } else {
-                var list = getStorageItems();
-            }
-        }
-    } catch (error) {
-
-    }
-
-
-});
-
 const STATUS = {
     ACTIVE: 1,
     PASSIVE: 0,
@@ -43,31 +7,45 @@ const STATUS = {
     POSTPONED: 3
 }
 
-window.addEventListener('load', function load(event) {
-    checkLocalStorage();
-});
+function createNewItem() {
+    debugger;
 
-function checkLocalStorage() {
-    if (typeof (Storage) == 'undefined') {
-        alert("Your browser doesn't support localStorage. This extension can't work without localStorage.");
-        return false;
+    try {
+        if (typeof (Storage) == 'undefined') {
+            alert("Your browser doesn't support localStorage. This extension can't work without localStorage.");
+            return false;
+        }
+
+        var list = JSON.parse(localStorage.getItem("todoDB")),
+            obj = {
+                "category": null,
+                "title": "test",
+                "description": document.getElementById("description").value,
+                "dateCreated": new Date(),
+                "dateUpdated": null,
+                "status": STATUS.ACTIVE
+            };
+
+        list.push(obj);
+        localStorage.setItem("todoDB", JSON.stringify(list));
+    } catch (error) {
+
     }
 }
 
-// document.getElementById("createListItem").onclick = function () {
-//     alert("xx");
-//     // var list = JSON.parse(localStorage.getItem("todoDB")),
-//     //     obj = {
-//     //         "category": null,
-//     //         "title": "test",
-//     //         "description": document.getElementById("description").value,
-//     //         "dateCreated": new Date(),
-//     //         "dateUpdated": null,
-//     //         "status": STATUS.ACTIVE
-//     //     };
+function listItems() {
+    document.getElementById("createListItem").addEventListener("click", createNewItem);
 
-//     // list.push(obj);
+    var list = localStorage.getItem("todoDB");
 
-//     // localStorage.setItem("todoDB", JSON.stringify(list));
-//     // console.log(localStorage.getItem("todoDB"));
-// };
+    if (list != null) {
+        var listItems = JSON.parse(localStorage.getItem("todoDB"));
+
+    } else {
+        localStorage.clear();
+        localStorage.setItem("todoDB", null);
+    }
+}
+
+
+window.addEventListener('load', listItems);

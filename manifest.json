@@ -9,8 +9,11 @@
         "persistent": false
     },
     "permissions": [
-        "activeTab",
-        "storage"
+        "background",
+        "tabs",
+        "storage",
+        "http://*/*",
+        "https://*/*"
     ],
     "browser_action": {
         "default_popup": "index.html",
