@@ -1,4 +1,6 @@
-# todoExtension
-Todo extension for Google Chrome
+📣 Please do not check, fork or download it yet, it's in development.
+😇
 
-Please do not check it yet, still developing...
+# todoExtension
+Yet another todo extension for Google Chrome
+
