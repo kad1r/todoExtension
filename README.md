@@ -5,8 +5,10 @@ Yet another powerful and free todo extension for browsers
 
 # Features 😱
 * Will be forever free
+* Sync with email
 * Categorized todo items
 * Prioritized todo items
 * You can set timer for todo items and get notification when it's done
 * Paging
 * Order by date and priority
+* more feature will come.
