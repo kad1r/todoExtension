@@ -1,0 +1,12 @@
+# add categories for the todos
+# short by modified date (asc) and also short by priority
+# put timer for todo items and give alert/notification/sound when timer is done
+# do paging
+# remove guid and put normal id (do new function to get and create new id)
+# put checkbox to show done/canceled/postponed and etc
+# create form for new todo item / put category, priority and timer options
+# put another new form for category and priority to add them quickly
+# put collapse option for category and todo item
+#
+#
+#
